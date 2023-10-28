@@ -1,0 +1,15 @@
+
+<div class="container">
+  <h2>Сотрудники</h2>
+
+  <p *ngIf="isLoading">Loading....</p>
+  <app-table *ngIf="!isLoading" [employees]="employeeService.employees | filter: filterService.field:filterService.direction ">
+
+  </app-table>
+
+
+</div>
+
+<app-modalForm *ngIf="modalFormService.isVisable$ | async" [selectedEmpToEdit]="employeeService.empToEdit"/>
+
+<app-modal *ngIf="modalServiceDelete.isVisable$ | async" />

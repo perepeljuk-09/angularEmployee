@@ -1,0 +1,15 @@
+
+<div class="modal bg-secondary h-100 p-2 bg-opacity-25 modal-active" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" (click)="modalService.close()">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Подтвердите удаление</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="modalService.close()">Отмена</button>
+        <button type="button" class="btn btn-danger" (click)="onConfirmDelete()">Удалить</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,75 @@
+
+<div class="modal bg-secondary h-100 p-2 bg-opacity-25 d-block" id="modalForm" tabindex="-1" aria-labelledby="modalFormLabel" aria-hidden="true" (click)="onClose()">
+  <div class="modal-dialog">
+    <form [formGroup]="formData" class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-body">
+
+        <h1 class="modal-title fs-5 text-center" id="modalFormLabel">Заполните форму</h1>
+
+        <div class="mb-3">
+          <label for="department-name" class="col-form-label">Отдел:</label>
+          <input type="text" class="form-control" id="department-name" formControlName="department">
+          <p class="text-center text-danger" *ngIf="department.errors?.['required'] && department.touched">
+          required
+          </p>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="first-name" class="col-form-label">Имя:</label>
+          <input type="text" class="form-control" id="first-name" formControlName="firstName">
+          <p class="text-center text-danger" *ngIf="firstName.errors?.['required'] && firstName.touched">
+            required
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <label for="last-name" class="col-form-label">Фамилия:</label>
+          <input type="text" class="form-control" id="last-name" formControlName="lastName">
+          <p class="text-center text-danger" *ngIf="lastName.errors?.['required'] && lastName.touched">
+            required
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <label for="patronomyc" class="col-form-label">Отчество:</label>
+          <input type="text" class="form-control" id="patronomyc" formControlName="patronomyc">
+          <p class="text-center text-danger" *ngIf="patronomyc.errors?.['required'] && patronomyc.touched">
+            required
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <label for="birthday" class="col-form-label">Дата рождения:</label>
+          <input type="date" class="form-control" id="birthday" formControlName="birthday">
+          <p class="text-center text-danger" *ngIf="birthday.errors?.['required'] && birthday.touched">
+            required
+          </p>
+        </div>
+        <div class="mb-3">
+          <label for="dateOfEmployment" class="col-form-label">Дата устройства на работу:</label>
+          <input type="date" class="form-control" id="dateOfEmployment" formControlName="dateOfEmployment">
+          <p class="text-center text-danger" *ngIf="dateOfEmployment.errors?.['required'] && dateOfEmployment.touched">
+            required
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <label for="salary" class="col-form-label">Заработная плата:</label>
+          <input type="number" class="form-control" id="salary" formControlName="salary">
+          <p class="text-center text-danger" *ngIf="salary.errors?.['required'] && salary.touched">
+            required
+          </p>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onClose()">Отмена</button>
+        <button *ngIf="selectedEmpToEdit" type="button" class="btn btn-danger" (click)="onUpdate()">Обновить</button>
+        <button *ngIf="!selectedEmpToEdit" type="button" class="btn btn-danger" (click)="onCreate()">Создать</button>
+      </div>
+    </form>
+
+  </div>
+</div>

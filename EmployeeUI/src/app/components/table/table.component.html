@@ -1,0 +1,51 @@
+
+<table class="table table-bordered border-primary table-hover">
+
+  <thead>
+    <tr>
+      <th colspan="1" (click)="filterService.setFilter('department')" role="button">
+        Отдел
+        <app-arrow-filter [filterField]="filterService.field" [field]="'department'" [direction]="filterService.direction"/>
+      </th>
+      <th colspan="1" (click)="filterService.setFilter('firstName')" role="button">
+        Ф.И.О.
+        <app-arrow-filter [filterField]="filterService.field" [field]="'firstName'" [direction]="filterService.direction"/>
+      </th>
+      <th colspan="1" (click)="filterService.setFilter('birthday')" role="button">
+        Дата рождения
+        <app-arrow-filter [filterField]="filterService.field" [field]="'birthday'" [direction]="filterService.direction"/>
+      </th>
+      <th colspan="1" (click)="filterService.setFilter('dateOfEmployment')" role="button">
+        Дата устройства на работу
+        <app-arrow-filter [filterField]="filterService.field" [field]="'dateOfEmployment'" [direction]="filterService.direction"/>
+      </th>
+      <th colspan="1" (click)="filterService.setFilter('salary')" role="button">
+        Заработная плата
+        <app-arrow-filter [filterField]="filterService.field" [field]="'salary'" [direction]="filterService.direction"/>
+      </th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.department }}</td>
+      <td>{{ employee.firstName + " " + employee.lastName + " " + employee.patronomyc }}</td>
+      <td>{{ employee.birthday.split("T")[0] }}</td>
+      <td>{{ employee.dateOfEmployment.split("T")[0] }}</td>
+      <td>{{ employee.salary }}</td>
+      <td class="d-flex flex-column gap-1">
+
+        <button class="btn btn-primary btn-sm" (click)="modalFormService.open()">Создать</button>
+        <button class="btn btn-warning btn-sm" (click)="onSelectEmpToEditById(employee.employeeId)">Редактировать</button>
+        <button class="btn btn-danger btn-sm" (click)="onSelectEmpToDeleteById(employee.employeeId)">Удалить</button>
+
+      </td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+
