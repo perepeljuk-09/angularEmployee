@@ -3,6 +3,8 @@ import { ModalService } from '../../services/modal.service';
 import {ModalFormService} from "../../services/modalForm.service";
 import {EmployeeService} from "../../services/employee.service";
 import {FilterService} from "../../services/filter.service";
+import {ErrorService} from "../../services/error.service";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-employees',
@@ -15,15 +17,18 @@ export class EmployeesComponent implements OnInit{
     public modalServiceDelete: ModalService,
     public modalFormService: ModalFormService,
     public filterService: FilterService,
+    public errorService: ErrorService,
   ) {}
 
   isLoading = false;
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.employeeService.getAll().subscribe(res => {
+    this.employeeService.getAll().subscribe(res => {},
+      () => {},
+      () => {
       this.isLoading = false
-    })
+      })
 
   }
 

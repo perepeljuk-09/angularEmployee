@@ -1,16 +1,20 @@
 import {Injectable } from '@angular/core';
 import {IEmployee} from "../Models/IEmployee";
-import {find, Observable, tap} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {catchError, finalize, find, Observable, tap, throwError} from "rxjs";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {IEmployeeCreateDto} from "../Models/Dto/IEmployeeCreateDto";
 import {IEmployeeUpdateDto} from "../Models/Dto/IEmployeeUpdateDto";
+import {ErrorService} from "./error.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    public errorService: ErrorService,
+  ) { }
 
   employees: IEmployee[]
 
@@ -19,10 +23,19 @@ export class EmployeeService {
 
   empToEdit: IEmployee | null = null;
 
+  errorHandler(error: HttpErrorResponse){
+    let er = error.message + " " + error.status
+    this.errorService.handle(er)
+    console.log(er)
+    return throwError(er)
+  }
+
+
   getAll(): Observable<IEmployee[]>{
     return this.http.get<IEmployee[]>("https://localhost:7000/api/employees")
       .pipe(
-        tap(value => this.employees = value)
+        tap(value => this.employees = value),
+        catchError(this.errorHandler.bind(this)),
       )
   }
 

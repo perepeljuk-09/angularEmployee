@@ -3,6 +3,7 @@
   <h2>Сотрудники</h2>
 
   <p *ngIf="isLoading">Loading....</p>
+  <p *ngIf="errorService.error$">{{ errorService.error$ | async }}</p>
   <app-table *ngIf="!isLoading" [employees]="employeeService.employees | filter: filterService.field:filterService.direction ">
 
   </app-table>

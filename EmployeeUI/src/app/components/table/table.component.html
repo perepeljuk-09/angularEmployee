@@ -23,7 +23,9 @@
         Заработная плата
         <app-arrow-filter [filterField]="filterService.field" [field]="'salary'" [direction]="filterService.direction"/>
       </th>
-      <th colspan="1"></th>
+      <th colspan="1">
+        <button class="btn btn-primary btn-sm" (click)="modalFormService.open()">Создать</button>
+      </th>
     </tr>
   </thead>
 
@@ -37,7 +39,7 @@
       <td>{{ employee.salary }}</td>
       <td class="d-flex flex-column gap-1">
 
-        <button class="btn btn-primary btn-sm" (click)="modalFormService.open()">Создать</button>
+
         <button class="btn btn-warning btn-sm" (click)="onSelectEmpToEditById(employee.employeeId)">Редактировать</button>
         <button class="btn btn-danger btn-sm" (click)="onSelectEmpToDeleteById(employee.employeeId)">Удалить</button>
 
